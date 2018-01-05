@@ -32,7 +32,7 @@ a_list = list(a.flat)
 
 print a_list
 # b = []
-# for row in coords:
+# for row in coords: blajar
 #   asd = []
 #   for col in row:
 #     asd.append(col)
