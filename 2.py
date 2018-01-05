@@ -56,7 +56,7 @@ with open('coba.csv', 'r') as f:
       output.close()
       i+=1
 
-# with open('hasil cluster.csv', 'a') as m: 
+# with open('hasil cluster.csv', 'a') as m:  wong blajar
 #     m.write(",".join(aaaClass))
 #       print row+','+a_list[i]
 #       i+=1
