@@ -9,7 +9,7 @@ from sklearn import metrics
 
 # #############################################################################
 # Generate sample data
-X=pd.read_csv('train1.csv')
+X=pd.read_csv('hasilgo.csv')
 coords = X.as_matrix(columns=['lat','lng'])
 print coords
 
@@ -17,9 +17,9 @@ print coords
 # Compute DBSCAN
 #cluster_labels = -1 artinya data oulier
 kms_per_radian = 6371.0088
-epsilon = 1381.9 / kms_per_radian
+epsilon = 7.07 / kms_per_radian
 # epsilon = 4 / kms_per_radian
-db = DBSCAN(eps=epsilon, min_samples=10, algorithm='ball_tree', metric='haversine').fit(np.radians(coords))
+db = DBSCAN(eps=epsilon, min_samples=200, algorithm='ball_tree', metric='haversine').fit(coords)
 core_samples_mask = np.zeros_like(db.labels_, dtype=bool)
 core_samples_mask[db.core_sample_indices_] = True
 labels = db.labels_
@@ -43,11 +43,14 @@ a_list = list(a.flat)
 # for i in xrange(len(b)):
   # final_list.append([b[i],a_list[i]])
 
-with open('train1.csv', 'r') as f:
+with open('hasilgo.csv', 'r') as f:
   i = 0;
   for row in f:
     if 'checkin' not in row:
-      form = str(row.replace('\n',''))+','+str(a_list[i])
+      if '\n' in row:
+        form = str(row.replace('\n',''))+','+str(a_list[i])
+      else:
+        form = str(row)+','+str(a_list[i])
 
       print form
 
